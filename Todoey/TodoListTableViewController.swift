@@ -10,11 +10,27 @@ import UIKit
 
 class TodoListTableViewController: UITableViewController {
 
+    let itemArray = ["Look at documentation", "Roast some veggies", "Research trade in values"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
     }
 
+    //MARK - Tableview Datasource Methods
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // this will create a number of cells equal to the number of objects in the array
+        return itemArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        
+        cell.textLabel?.text = itemArray[indexPath.row]
+        
+        return cell
+    }
 
 }
 

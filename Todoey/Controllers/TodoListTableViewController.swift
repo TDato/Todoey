@@ -13,6 +13,8 @@ import ChameleonFramework
 
 class TodoListTableViewController: SwipeTableViewController{
 
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     let realm = try! Realm()
     var todoItems : Results<Item>?
     var selectedCategory : Category? {
@@ -28,7 +30,25 @@ class TodoListTableViewController: SwipeTableViewController{
         // fill the array
         loadItems()
         tableView.separatorStyle = .none
+        
 
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let safeCategory = selectedCategory {
+            title = safeCategory.name
+            
+            if let categoryColor = UIColor(hexString: safeCategory.color) {
+                updateNavBarColor(categoryColor)
+                
+                searchBar.barTintColor = categoryColor
+                searchBar.searchTextField.backgroundColor = FlatWhite() // Fixes the searchbar issue
+            }
+        }
     }
 
     //MARK - Tableview Datasource Methods

@@ -100,13 +100,15 @@ class TodoListTableViewController: UITableViewController{
                     try self.realm.write {
                         let newItem = Item()
                         newItem.title = textField.text!
+                         newItem.dateCreated = Date()
                         currentCategory.items.append(newItem)
+                       
                     }
                 } catch {
                     print("Error saving new items, \(error)")
                 }
             }
-            self.tableView.reloadData()
+            self.loadItems()
         }
         
         alert.addTextField() { (alertTextField) in
@@ -135,17 +137,14 @@ class TodoListTableViewController: UITableViewController{
 extension TodoListTableViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //let request : NSFetchRequest<Item> = Item.fetchRequest()
         
-        // specify the query or filter
-        //let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-       // request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-       // loadItems(with: request, predicate: predicate)
-        
+        todoItems = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+
+        tableView.reloadData()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            //loadItems()
+            loadItems()
             
             // object that manages the execution of work items
             DispatchQueue.main.async {

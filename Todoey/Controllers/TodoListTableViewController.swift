@@ -108,7 +108,7 @@ class TodoListTableViewController: UITableViewController{
                     print("Error saving new items, \(error)")
                 }
             }
-            self.loadItems()
+            self.tableView.reloadData()
         }
         
         alert.addTextField() { (alertTextField) in

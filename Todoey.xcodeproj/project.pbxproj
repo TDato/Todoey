@@ -81,8 +81,8 @@
 			children = (
 				6527050524182021000D7F8A /* AppDelegate.swift */,
 				6527050724182021000D7F8A /* SceneDelegate.swift */,
-				6527051F24187AC8000D7F8A /* Data Model */,
 				6527052024187AE2000D7F8A /* Controllers */,
+				6527051F24187AC8000D7F8A /* Data Model */,
 				6527052124187B0D000D7F8A /* Views */,
 				6527052524189271000D7F8A /* Supporting Files */,
 				6527051624182023000D7F8A /* Info.plist */,

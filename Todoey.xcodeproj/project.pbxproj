@@ -58,12 +58,12 @@
 		6527050424182021000D7F8A /* Todoey */ = {
 			isa = PBXGroup;
 			children = (
-				6527051F24187AC8000D7F8A /* Data Model */,
 				6527050524182021000D7F8A /* AppDelegate.swift */,
 				6527050724182021000D7F8A /* SceneDelegate.swift */,
+				6527051F24187AC8000D7F8A /* Data Model */,
 				6527052024187AE2000D7F8A /* Controllers */,
 				6527052124187B0D000D7F8A /* Views */,
-				6527051124182023000D7F8A /* Assets.xcassets */,
+				6527052524189271000D7F8A /* Supporting Files */,
 				6527051624182023000D7F8A /* Info.plist */,
 			);
 			path = Todoey;
@@ -92,6 +92,14 @@
 				6527050B24182021000D7F8A /* Main.storyboard */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		6527052524189271000D7F8A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6527051124182023000D7F8A /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

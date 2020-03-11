@@ -14,6 +14,7 @@
 		6527051224182023000D7F8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6527051124182023000D7F8A /* Assets.xcassets */; };
 		6527051524182023000D7F8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6527051324182023000D7F8A /* LaunchScreen.storyboard */; };
 		65270524241889AB000D7F8A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65270522241889AB000D7F8A /* DataModel.xcdatamodeld */; };
+		6527052724189B5E000D7F8A /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6527052624189B5E000D7F8A /* CategoryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		6527051424182023000D7F8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6527051624182023000D7F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65270523241889AB000D7F8A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		6527052624189B5E000D7F8A /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryTableViewController.swift; path = Todoey/Controllers/CategoryTableViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		6527052024187AE2000D7F8A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6527052624189B5E000D7F8A /* CategoryTableViewController.swift */,
 				6527050924182021000D7F8A /* TodoListTableViewController.swift */,
 			);
 			path = Controllers;
@@ -175,6 +178,7 @@
 			files = (
 				6527050A24182021000D7F8A /* TodoListTableViewController.swift in Sources */,
 				6527050624182021000D7F8A /* AppDelegate.swift in Sources */,
+				6527052724189B5E000D7F8A /* CategoryTableViewController.swift in Sources */,
 				65270524241889AB000D7F8A /* DataModel.xcdatamodeld in Sources */,
 				6527050824182021000D7F8A /* SceneDelegate.swift in Sources */,
 			);

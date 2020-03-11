@@ -11,7 +11,7 @@ import RealmSwift
 
 
 
-class TodoListTableViewController: UITableViewController{
+class TodoListTableViewController: SwipeTableViewController{
 
     let realm = try! Realm()
     var todoItems : Results<Item>?
@@ -38,8 +38,9 @@ class TodoListTableViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         if let item = todoItems?[indexPath.row] {
 
             cell.textLabel?.text = item.title
@@ -129,6 +130,17 @@ class TodoListTableViewController: UITableViewController{
         tableView.reloadData()
     }
     
+    override func updateModel(at indexPath: IndexPath) {
+        if let item = todoItems?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(item)
+                }
+            } catch {
+                print("Error deleting item \(error)")
+            }
+        }
+    }
 
 }
 // Modularity

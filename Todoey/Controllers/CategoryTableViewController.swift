@@ -8,10 +8,9 @@
 
 import UIKit
 //import CoreData
-import SwipeCellKit
 import RealmSwift
 
-class CategoryTableViewController: UITableViewController {
+class CategoryTableViewController: SwipeTableViewController {
     let realm = try! Realm()
     var categories: Results<Category>?
     
@@ -19,8 +18,7 @@ class CategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         loadCategories()
         
-        // adjust height for delete swipe image
-        tableView.rowHeight = 70.0
+
     }
 
     // MARK: - Table view data source
@@ -38,9 +36,10 @@ class CategoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! SwipeTableViewCell
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
-        cell.delegate = self
+
         return cell
     }
     
@@ -109,42 +108,19 @@ class CategoryTableViewController: UITableViewController {
         categories = realm.objects(Category.self)
         tableView.reloadData()
     }
-}
-
-//MARK: - Swipe Cell Delegate Methods
-extension CategoryTableViewController: SwipeTableViewCellDelegate {
-    
-    // Responsible for handling what happens when the user swipes on the cells
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            // handle action by updating model with deletion
-            
-            if let categoryForDeletion = self.categories?[indexPath.row] {
-                do {
-                    try self.realm.write {
-                        self.realm.delete(categoryForDeletion)
-                    }
-                } catch {
-                    print("Error deleting category \(error)")
+    //MARK: - Delete Data From Swipe
+    override func updateModel(at indexPath: IndexPath) {
+        if let categoryForDeletion = self.categories?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(categoryForDeletion)
                 }
+            } catch {
+                print("Error deleting category \(error)")
             }
-            
-            //tableView.reloadData()
         }
-
-        // customize the action appearance
-        deleteAction.image = UIImage(named: "delete-icon")
-
-        return [deleteAction]
-    }
-    
-    // Customizable swipe behavior
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-        var options = SwipeOptions()
-        options.expansionStyle = .destructive
-        options.transitionStyle = .border
-        return options
+        
     }
 }
+
+
